@@ -28,9 +28,9 @@ var createNewTaskElement=function(taskString){
     //button.edit
     var editButton=document.createElement("button");//edit button
 
-    //button.delete
-    var deleteButton=document.createElement("button");//delete button
-    var deleteButtonImg=document.createElement("img");//delete button image
+    //button.del
+    var delButton=document.createElement("button");//del button
+    var delButtonImg=document.createElement("img");//del button image
 
     label.innerText=taskString;
     label.className='task';
@@ -43,9 +43,9 @@ var createNewTaskElement=function(taskString){
     editButton.innerText="Edit"; //innerText encodes special characters, HTML does not.
     editButton.className="edit";
 
-    deleteButton.className="delete";
-    deleteButtonImg.src='./remove.svg';
-    deleteButton.appendChild(deleteButtonImg);
+    delButton.className="del";
+    delButtonImg.src='./remove.svg';
+    delButton.appendChild(delButtonImg);
 
 
     //and appending.
@@ -53,7 +53,7 @@ var createNewTaskElement=function(taskString){
     listItem.appendChild(label);
     listItem.appendChild(editInput);
     listItem.appendChild(editButton);
-    listItem.appendChild(deleteButton);
+    listItem.appendChild(delButton);
     return listItem;
 }
 
@@ -103,9 +103,9 @@ var editTask=function(){
 };
 
 
-//Delete task.
-var deleteTask=function(){
-    console.log("Delete Task...");
+//del task.
+var delTask=function(){
+    console.log("del Task...");
 
     var listItem=this.parentNode;
     var ul=listItem.parentNode;
@@ -157,13 +157,13 @@ var bindTaskEvents=function(taskListItem,checkBoxEventHandler){
 //select ListItems children
     var checkBox=taskListItem.querySelector("input[type=checkbox]");
     var editButton=taskListItem.querySelector("button.edit");
-    var deleteButton=taskListItem.querySelector("button.delete");
+    var delButton=taskListItem.querySelector("button.del");
 
 
     //Bind editTask to edit button.
     editButton.onclick=editTask;
-    //Bind deleteTask to delete button.
-    deleteButton.onclick=deleteTask;
+    //Bind delTask to del button.
+    delButton.onclick=delTask;
     //Bind taskCompleted to checkBoxEventHandler.
     checkBox.onchange=checkBoxEventHandler;
 }
